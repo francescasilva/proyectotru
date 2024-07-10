@@ -1,0 +1,112 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 90%;
+    max-width: 375px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+textarea {
+    padding: 16px;
+    font-size: 24px;
+    border: 2px solid #4F4F4F;
+    border-radius: 16px;
+    width: 343px;
+    height: 120px;
+    resize: none;
+    font-family: 'Roboto', Arial, sans-serif;
+   
+}
+
+#noteInput::placeholder {
+    opacity: 0.4; /* Ajusta el valor para cambiar la visibilidad */
+  }
+
+
+button {
+    padding: 8px 16px 8px 16px;
+    font-size: 24px;
+    border: none;
+    border-radius: 16px;
+    background-color: #4F4F4F;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: #ad00b3;
+}
+
+.note {
+    margin: 15px 0;
+    padding: 15px; 
+    border: 2px solid #4F4F4F;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    word-wrap: break-word; /* Ajustar el texto largo */
+    white-space: pre-wrap; /* Preservar los saltos de línea */
+    margin-bottom: 10px;
+    position: relative;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #4F4F4F;
+    
+   
+}
+
+.note-content {
+    margin-bottom: 30px; /* Ajusta el margen inferior para dejar espacio al botón */
+}
+
+.delete-btn {
+    background-color: #E0E0E0;
+    color: #4F4F4F;
+    border: none;
+    padding: 4px 16px 4px 16px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-family: 'Roboto', Arial, sans-serif;
+    width: 83px;
+    height: 30px;
+    font-size: 17px;
+    
+}
+   
+
+
+.delete-btn:hover {
+    background-color: #ec5f4f;
+}
