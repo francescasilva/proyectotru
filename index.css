@@ -2,10 +2,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Cambiado a min-height para permitir que el contenido crezca */
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     background-color: #f8f9fa;
+    padding: 20px;
 }
 
 .container {
@@ -15,14 +16,16 @@ body {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    height: 90%;
-    max-height: 748px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
 form {
@@ -36,13 +39,14 @@ form {
 
 textarea {
     padding: 16px;
-    font-size: 24px;
+    font-size: 1rem;
     border: 2px solid #4F4F4F;
     border-radius: 16px;
-    width: 343px;
+    width: 336px;
     height: 120px;
     resize: none;
     font-family: 'Roboto', Arial, sans-serif;
+    box-sizing: border-box;
    
 }
 
@@ -53,7 +57,7 @@ textarea {
 
 button {
     padding: 8px 16px 8px 16px;
-    font-size: 24px;
+    font-size:  1rem; /* Cambiado a unidades relativas */
     border: none;
     border-radius: 16px;
     background-color: #4F4F4F;
@@ -64,7 +68,7 @@ button {
 }
 
 button:hover {
-    background-color: #ad00b3;
+    background-color: #1263dd;
 }
 
 
@@ -76,7 +80,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 24px;
+    font-size: 1rem; /* Cambiado a unidades relativas */
     word-wrap: break-word; /* Ajustar el texto largo */
     white-space: pre-wrap; /* Preservar los saltos de línea */
     margin-bottom: 10px;
@@ -89,6 +93,7 @@ button:hover {
 
 .note-content {
     margin-bottom: 30px; /* Ajusta el margen inferior para dejar espacio al botón */
+    white-space: pre-wrap; 
 }
 
 .delete-btn {
@@ -105,12 +110,63 @@ button:hover {
     font-family: 'Roboto', Arial, sans-serif;
     width: 83px;
     height: 30px;
-    font-size: 17px;
+    font-size:1rem; /* Cambiado a unidades relativas */
     
 }
    
-
-
 .delete-btn:hover {
-    background-color: #ec5f4f;
+    background-color: #c0b8b8;
+
+}
+
+.pin-btn {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 4px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    right: 108px;
+    font-family: 'Roboto', Arial, sans-serif;   
+    font-size: 1rem; /* Cambiado a unidades relativas */
+}
+
+.pin-btn:hover {
+    background-color: #eb3d2a;
+}
+
+.pin-btn i {
+    font-size: 17px;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    textarea {
+        height: 100px;
+        font-size: 0.875rem; /* Ajustar el tamaño de la fuente en pantallas pequeñas */
+    }
+
+    button {
+        font-size: 0.875rem; /* Ajustar el tamaño de la fuente en pantallas pequeñas */
+        padding: 6px 12px;
+    }
+
+    .note {
+        font-size: 0.875rem; /* Ajustar el tamaño de la fuente en pantallas pequeñas */
+        padding: 10px;
+    }
+
+    .delete-btn,
+    .pin-btn {
+        font-size: 0.875rem; /* Ajustar el tamaño de la fuente en pantallas pequeñas */
+        width: 35px;
+        height: 35px;
+    }
 }

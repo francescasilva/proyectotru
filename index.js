@@ -25,12 +25,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function createNoteElement(noteText) {
         const noteElement = document.createElement('div');
         noteElement.className = 'note';
-    
+
         const noteContent = document.createElement('div');
-        noteContent.className = 'note-content'; // Asegúrate de agregar esta clase al elemento de contenido de la nota
-        noteContent.textContent = noteText;
+        noteContent.className = 'note-content';
+        noteContent.innerText = noteText;
         noteElement.appendChild(noteContent);
-    
+
+        const pinButton = document.createElement('button');
+        pinButton.className = 'pin-btn';
+        pinButton.innerHTML = '<i class="fas fa-thumbtack"></i>';
+        pinButton.addEventListener('click', function() {
+            pinNote(noteElement, noteText);
+        });
+        noteElement.appendChild(pinButton);
+
         const deleteButton = document.createElement('button');
         deleteButton.className = 'delete-btn';
         deleteButton.textContent = 'Borrar';
@@ -38,10 +46,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
             noteElement.remove();
             deleteNoteFromLocalStorage(noteText);
         });
-    
         noteElement.appendChild(deleteButton);
+
         return noteElement;
     }
+
+    function pinNote(noteElement, noteText) {
+        notesContainer.prepend(noteElement);
+        let notes = localStorage.getItem('notes');
+        if (notes) {
+            notes = JSON.parse(notes);
+            notes = notes.filter(note => note !== noteText);
+            notes.unshift(noteText);
+            localStorage.setItem('notes', JSON.stringify(notes));
+        }
+    }
+
     function saveNoteToLocalStorage(noteText) {
         let notes = localStorage.getItem('notes');
         if (notes) {
@@ -52,6 +72,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         notes.push(noteText);
         localStorage.setItem('notes', JSON.stringify(notes));
     }
+
     function loadNotes() {
         let notes = localStorage.getItem('notes');
         if (notes) {
