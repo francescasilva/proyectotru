@@ -1,25 +1,54 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+// index.js (modificado para exportar funciones)
+
+export function addNote(noteText) {
+    if (noteText.trim() !== '') {
+        saveNoteToLocalStorage(noteText.trim());
+        return noteText.trim();
+    }
+    return null;
+}
+
+export function deleteNoteElement(noteText) {
+    const notes = loadNotes();
+    const updatedNotes = notes.filter(note => note !== noteText);
+    localStorage.setItem('notes', JSON.stringify(updatedNotes));
+}
+
+export function loadNotes() {
+    return JSON.parse(localStorage.getItem('notes')) || [];
+}
+
+function saveNoteToLocalStorage(noteText) {
+    let notes = JSON.parse(localStorage.getItem('notes')) || [];
+    notes.push(noteText);
+    localStorage.setItem('notes', JSON.stringify(notes));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     const noteForm = document.getElementById('noteForm');
     const noteInput = document.getElementById('noteInput');
     const notesContainer = document.getElementById('notesContainer');
 
-    // Cargar notas guardadas al iniciar
-    loadNotes();
+    loadInitialNotes();
 
     noteForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        addNote();
-    });
-
-    function addNote() {
         const noteText = noteInput.value.trim();
-        if (noteText !== '') {
-            const noteElement = createNoteElement(noteText);
+        const newNote = addNote(noteText);
+        if (newNote) {
+            const noteElement = createNoteElement(newNote);
             notesContainer.appendChild(noteElement);
-            saveNoteToLocalStorage(noteText);
             noteInput.value = '';
             noteInput.focus();
         }
+    });
+
+    function loadInitialNotes() {
+        const notes = loadNotes();
+        notes.forEach(noteText => {
+            const noteElement = createNoteElement(noteText);
+            notesContainer.appendChild(noteElement);
+        });
     }
 
     function createNoteElement(noteText) {
@@ -35,7 +64,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         pinButton.className = 'pin-btn';
         pinButton.innerHTML = '<i class="fas fa-thumbtack"></i>';
         pinButton.addEventListener('click', function() {
-            pinNote(noteElement, noteText);
+            pinNoteElement(noteElement, noteText);
         });
         noteElement.appendChild(pinButton);
 
@@ -44,52 +73,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         deleteButton.textContent = 'Borrar';
         deleteButton.addEventListener('click', function() {
             noteElement.remove();
-            deleteNoteFromLocalStorage(noteText);
+            deleteNoteElement(noteText);
         });
         noteElement.appendChild(deleteButton);
 
         return noteElement;
     }
 
-    function pinNote(noteElement, noteText) {
+    function pinNoteElement(noteElement, noteText) {
         notesContainer.prepend(noteElement);
-        let notes = localStorage.getItem('notes');
-        if (notes) {
-            notes = JSON.parse(notes);
-            notes = notes.filter(note => note !== noteText);
-            notes.unshift(noteText);
-            localStorage.setItem('notes', JSON.stringify(notes));
-        }
-    }
-
-    function saveNoteToLocalStorage(noteText) {
-        let notes = localStorage.getItem('notes');
-        if (notes) {
-            notes = JSON.parse(notes);
-        } else {
-            notes = [];
-        }
-        notes.push(noteText);
-        localStorage.setItem('notes', JSON.stringify(notes));
-    }
-
-    function loadNotes() {
-        let notes = localStorage.getItem('notes');
-        if (notes) {
-            notes = JSON.parse(notes);
-            notes.forEach(noteText => {
-                const noteElement = createNoteElement(noteText);
-                notesContainer.appendChild(noteElement);
-            });
-        }
-    }
-
-    function deleteNoteFromLocalStorage(noteText) {
-        let notes = localStorage.getItem('notes');
-        if (notes) {
-            notes = JSON.parse(notes);
-            notes = notes.filter(note => note !== noteText);
-            localStorage.setItem('notes', JSON.stringify(notes));
-        }
+        const notes = loadNotes();
+        const updatedNotes = notes.filter(note => note !== noteText);
+        updatedNotes.unshift(noteText);
+        localStorage.setItem('notes', JSON.stringify(updatedNotes));
     }
 });
