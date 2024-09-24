@@ -1,5 +1,5 @@
 // index.test.js
-import { addNote, deleteNoteElement, loadNotes } from '../index';
+import { addNote, deleteNoteElement, loadNotes } from '../notes.js';
 
 describe('addNote', () => {
     beforeEach(() => {

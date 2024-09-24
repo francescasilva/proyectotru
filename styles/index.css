@@ -114,6 +114,31 @@ button:hover {
     
 }
    
+.edit-btn {
+    background-color: #E0E0E0;
+    color: #4F4F4F;
+    border: none;
+    padding: 4px 16px 4px 16px;
+    cursor: pointer;
+    border-radius: 16px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    right: 156px;
+    font-family: 'Roboto', Arial, sans-serif;
+    width: 83px;
+    height: 30px;
+    font-size:1rem; /* Cambiado a unidades relativas */
+    
+    
+}
+
+.edit-btn:hover {
+    background-color: #c0b8b8;
+
+}
+
+
 .delete-btn:hover {
     background-color: #c0b8b8;
 
@@ -129,7 +154,7 @@ button:hover {
     font-weight: 700;
     position: absolute;
     bottom: 10px;
-    right: 108px;
+    right: 101px;
     font-family: 'Roboto', Arial, sans-serif;   
     font-size: 1rem; /* Cambiado a unidades relativas */
 }
@@ -141,6 +166,9 @@ button:hover {
 .pin-btn i {
     font-size: 17px;
 }
+
+
+
 
 /* Media Queries */
 @media (max-width: 600px) {
